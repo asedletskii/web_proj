@@ -45,8 +45,9 @@ export default function App() {
     return (
         <AuthProvider>
             <Router>
-                <AppContent />
+                <AppContent/>
             </Router>
         </AuthProvider>
     );
 }
+//TEST
