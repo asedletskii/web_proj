@@ -1,8 +1,21 @@
+import React from 'react';
 import Button from "../Button/Button";
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Header() {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+        navigate('/login');
+    };
+
+    const handleProfileClick = () => {
+        navigate('/profile');
+    };
+
     return (
         <header>
             <p>
@@ -13,7 +26,11 @@ export default function Header() {
                 <Link to="/about">
                     <Button>О проекте</Button>
                 </Link>
-                <Button className="signup" onClick={""}>Войти</Button>
+                {user ? (
+                    <Button className="signup" onClick={handleProfileClick}>Профиль</Button>
+                ) : (
+                    <Button className="signup" onClick={handleLoginClick}>Войти</Button>
+                )}
             </div>
         </header>
     );
